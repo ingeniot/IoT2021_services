@@ -1,0 +1,36 @@
+VPS
+    Conexión
+        ssh -i c:\Users\bache\Documents\Desarrollos\IoT2021\ingeniot.pem ubuntu@3.23.116.191
+    Primeros comandos desde carpeta ubuntu (carpeta del usuario ubuntu)
+        sudo apt-get update                 Actualiza listados de aplicaciones disponibles para descarga
+        wget https://get.docker.com         Descarga instalador de docker
+        sudo mv index.html install_docker.sh     Renombra el archivo. La extensión .sh es para que sea un bash (scipt ejecutable)
+        sudo chmod 777 install_docker.sh         Otorga privilegios al archivo. Cualquier usuario lo puede ver. De todas maneras el unico usuario actual es ubuntu
+        sudo ./install_docker.sh                 Se ejecuta el bash, instalando docker
+        sudo rm install_docker.sh               Elimina el archivo bash ya utilizado
+        sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose      Instala docker-compose. Obtenido desde https://docs.docker.com/compose/install/  (opción linux)
+        sudo chmod +x /usr/local/bin/docker-compose         Otorga permiso de ejecución al binario
+
+        dockerd-rootless-setuptool.sh install   Puede ser necesario para correr docker como un usuario no privilegiado
+    Subir repositorio services desde github al VPS
+        sudo git clone ruta repositorio (obtenida desde github)
+        mv IoT2021_services ingeniot            Cambia nombre de la carpeta por uno mas simple
+        cd ingeniot
+
+        // Crear menu de creación de .env
+
+        sudo nano .env                               Se crea archivo .env nuevo
+            Copiar ontenido .env de services en el editor
+            cAMBIAR TIMEZONE a UTC
+
+        sudo docker-compose -f  docker-compose-pro.yml up
+              
+        sudo git clone https://github.com/ingeniot/IoT2021_app.git      En la carpeta del VPS ingeniot hay que clonar la aplicación
+        sudo mv IoT2021_app app                                         Renombra la carpeta
+
+        Ejecutar una vez en la carpeta ingeniot del vps para que cree la carpeta node modules
+            sudo docker-compose -f docker-compose-node-install.yml up       Instala nuxt en el vps
+        Crear variables de entorno de la aplicación en VPS en la capeta app
+            sudo nano .env
+            
+
