@@ -20,7 +20,6 @@ services:
         #Carpeta de trabajo del contenedor
         working_dir: /home/node/app
         volumes: 
-            - ./mycode/index.js:/home/node/app/index.js
             #Monta todo el contenido de la carpeta app dentro de la carpeta de trabajo
             - ./app/:/home/node/app
         ports:

@@ -32,5 +32,6 @@ VPS
             sudo docker-compose -f docker-compose-node-install.yml up       Instala nuxt en el vps
         Crear variables de entorno de la aplicación en VPS en la capeta app
             sudo nano .env
+        En las variables de entorno reemplazar localhost por la ip publica del VPS
             
 
