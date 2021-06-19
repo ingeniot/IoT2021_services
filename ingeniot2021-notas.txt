@@ -2,12 +2,13 @@ VPS
     Conexión
         ssh -i c:\Users\bache\Documents\Desarrollos\IoT2021\ingeniot.pem ubuntu@3.23.116.191
     Primeros comandos desde carpeta ubuntu (carpeta del usuario ubuntu)
-        sudo apt-get update                 Actualiza listados de aplicaciones disponibles para descarga
-        wget https://get.docker.com         Descarga instalador de docker
+        sudo apt-get update                     Actualiza listados de aplicaciones disponibles para descarga de repositorios de ubuntu
+        wget https://get.docker.com             Descarga instalador de docker
         sudo mv index.html install_docker.sh     Renombra el archivo. La extensión .sh es para que sea un bash (scipt ejecutable)
         sudo chmod 777 install_docker.sh         Otorga privilegios al archivo. Cualquier usuario lo puede ver. De todas maneras el unico usuario actual es ubuntu
         sudo ./install_docker.sh                 Se ejecuta el bash, instalando docker
         sudo rm install_docker.sh               Elimina el archivo bash ya utilizado
+            sudo usermod -aG docker ubuntu      Opcional. Le da privilegios root a contenedores de docker en el host de docker
         sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose      Instala docker-compose. Obtenido desde https://docs.docker.com/compose/install/  (opción linux)
         sudo chmod +x /usr/local/bin/docker-compose         Otorga permiso de ejecución al binario
 
