@@ -1,6 +1,6 @@
 VPS
     Conexión
-        ssh -i c:\Users\bache\Documents\Desarrollos\IoT2021\ingeniot.pem ubuntu@3.23.116.191
+        ssh -i c:\Users\bache\Documents\Desarrollos\IoT2021\ingeniot_2021.pem ubuntu@3.23.116.191
     Primeros comandos desde carpeta ubuntu (carpeta del usuario ubuntu)
         sudo apt-get update                     Actualiza listados de aplicaciones disponibles para descarga de repositorios de ubuntu
         wget https://get.docker.com             Descarga instalador de docker
@@ -13,24 +13,26 @@ VPS
         sudo chmod +x /usr/local/bin/docker-compose         Otorga permiso de ejecución al binario
 
         dockerd-rootless-setuptool.sh install   Puede ser necesario para correr docker como un usuario no privilegiado
-    Subir repositorio services desde github al VPS
-        sudo git clone ruta repositorio (obtenida desde github)
+    
+        sudo git clone ruta repositorio.git     (obtenida desde github)  Subir repositorio services desde github al VPS
         mv IoT2021_services ingeniot            Cambia nombre de la carpeta por uno mas simple
-        cd ingeniot
-
-        // Crear menu de creación de .env
+        cd ingeniot                             Acceder a la carpeta creada
 
         sudo nano .env                               Se crea archivo .env nuevo
             Copiar ontenido .env de services en el editor
             cAMBIAR TIMEZONE a UTC
 
-        sudo docker-compose -f  docker-compose-pro.yml up
+         // Crear .env autmáticamente con menu
+
+
               
         sudo git clone https://github.com/ingeniot/IoT2021_app.git      En la carpeta del VPS ingeniot hay que clonar la aplicación
         sudo mv IoT2021_app app                                         Renombra la carpeta
+        sudo docker-compose -f docker-compose-node-install.yml up       Instala los module nuxt en el vps
 
+        sudo docker-compose -f  docker-compose-pro.yml up -d
         Ejecutar una vez en la carpeta ingeniot del vps para que cree la carpeta node modules
-            sudo docker-compose -f docker-compose-node-install.yml up       Instala nuxt en el vps
+
         Crear variables de entorno de la aplicación en VPS en la capeta app
             sudo nano .env
         En las variables de entorno reemplazar localhost por la ip publica del VPS

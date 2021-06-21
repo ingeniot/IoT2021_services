@@ -1,10 +1,10 @@
-#Archivo para ejecutar una vez para crear la carpeta node modules
+#Archivo para ejecutar una vez para transpilar nuxt luego de instalar node con dockeer-compoose-install-node.yml
 version: "3.8"      
 
 services:
 
-    node_install:
-        container_name: node_install
+    node_build:
+        container_name: node_build
         image: "node:14"
         #restart: always
         #Carpeta de trabajo del contenedor
@@ -13,5 +13,4 @@ services:
             #Monta todo el contenido de la carpeta app dentro de la carpeta de trabajo
             - ./app/:/home/node/app
 
-            
-        command: sh -c "npm install"
+        command: sh -c "npm run build"
