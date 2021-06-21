@@ -8,14 +8,13 @@ volumes:
     vol-emqx-log:
         name: foo-emqx-log    
 #Archivo para ejecutar una vez para crear la carpeta node modules
-version: "3.8"      
+
 
 services:
 
     node:
         container_name: node
         image: "node:14"
-        restart: always
         #restart: always
         #Carpeta de trabajo del contenedor
         working_dir: /home/node/app
@@ -30,12 +29,14 @@ services:
             - emqx
             - mongo
 
-        command: sh -c "npm run build & run start"
+        command: sh -c "echo 'delaiyng 30 seconds' && sleep 30 && npm run start"
 
     mongo:
         container_name: mongo
         image: mongo:4.4
-        restart: always
+        #restart: always
+        logging:
+            driver: "none"
         ports:
             - ${MONGO_EXTERNAL_PORT}:27017
         environment: 
@@ -48,7 +49,7 @@ services:
     emqx:
         container_name: emqx
         image:  emqx/emqx:4.2.3
-        restart: always
+       #restart: always
         ports: 
         #:- ${emqxdashport}:18083
             - 18083:18083
