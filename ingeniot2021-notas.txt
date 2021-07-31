@@ -1,6 +1,6 @@
 VPS
     Conexión
-        ssh -i c:\Users\bache\Documents\Desarrollos\IoT2021\ingeniot_2021.pem ubuntu@3.23.116.191
+        ssh -i c:\Users\bache\Documents\Desarrollos\IoT2021\llave_ingeniot2021.pem ubuntu@3.23.116.191
     Primeros comandos desde carpeta ubuntu (carpeta del usuario ubuntu)
         sudo apt-get update                     Actualiza listados de aplicaciones disponibles para descarga de repositorios de ubuntu
         wget https://get.docker.com             Descarga instalador de docker
