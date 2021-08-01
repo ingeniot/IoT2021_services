@@ -14,9 +14,9 @@ VPS
 
         dockerd-rootless-setuptool.sh install   Puede ser necesario para correr docker como un usuario no privilegiado
     
-        sudo git clone ruta repositorio.git     (obtenida desde github)  Subir repositorio services desde github al VPS
-        mv IoT2021_services ingeniot            Cambia nombre de la carpeta por uno mas simple
-        cd ingeniot                             Acceder a la carpeta creada
+        sudo git clone https://github.com/ingeniot/IoT2021_services.git sudo git clone ruta repositorio.git     (obtenida desde github)  Subir repositorio services desde github al VPS
+        mv IoT2021_services ingeniot            			Cambia nombre de la carpeta por uno mas simple
+        cd ingeniot                             			Acceder a la carpeta creada
 
         sudo nano .env                               Se crea archivo .env nuevo
             Copiar ontenido .env de services en el editor
@@ -24,6 +24,7 @@ VPS
 
          // Crear .env autmáticamente con menu
 
+	sudo docker-compose -f docker-compose-pro.yml up
 
               
         sudo git clone https://github.com/ingeniot/IoT2021_app.git      En la carpeta del VPS ingeniot hay que clonar la aplicación
