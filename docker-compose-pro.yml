@@ -20,8 +20,8 @@ services:
         working_dir: /home/node/app
         volumes: 
             #Monta todo el contenido de la carpeta app dentro de la carpeta de trabajo
-            #- ./mycode/index.js:/home/node/app/index.js
-            - ./app/:/home/node/app
+            - ./mycode/index.js:/home/node/app/index.js
+            #- ./app/:/home/node/app
         ports:
             - "3000:3000"
             - "3001:3001"
@@ -29,8 +29,8 @@ services:
         links:
             - emqx
             - mongo
-        command: sh -c "echo 'delaiyng 30 seconds' && sleep 30 && npm run build && npm run start"
-        #command: sh -c "node index.js"
+        #command: sh -c "echo 'delaiyng 30 seconds' && sleep 30 && npm run build && npm run start"
+        command: sh -c "node index.js"
     mongo:
         container_name: mongo
         image: mongo:4.4
