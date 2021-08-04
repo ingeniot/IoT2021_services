@@ -50,6 +50,9 @@ services:
         container_name: emqx
         image:  emqx/emqx:4.2.3
        #restart: always
+        expose:
+            - 8085
+            
         ports: 
         #:- ${emqxdashport}:18083
             - 18083:18083

@@ -27,6 +27,7 @@ VPS
               
         sudo git clone https://github.com/ingeniot/IoT2021_app.git      En la carpeta del VPS ingeniot hay que clonar la aplicación
         sudo mv IoT2021_app app                                         Renombra la carpeta
+		incluir en el gitignore de services la carpeta app para evitar conflictos
         sudo docker-compose -f docker-compose-node-install.yml up       Instala los module nuxt en el vps
 
         sudo docker-compose -f  docker-compose-pro.yml up -d
