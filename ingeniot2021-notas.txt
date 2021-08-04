@@ -1,6 +1,6 @@
 VPS
     Conexión
-        ssh -i c:\Users\bache\Documents\Desarrollos\IoT2021\llave_ingeniot2021.pem ubuntu@3.23.116.191
+        ssh -i c:\Users\bache\Documents\Desarrollos\IoT2021\ingeniot2021.pem ubuntu@3.23.116.191
     Primeros comandos desde carpeta ubuntu (carpeta del usuario ubuntu)
         sudo apt-get update                     Actualiza listados de aplicaciones disponibles para descarga de repositorios de ubuntu
         wget https://get.docker.com             Descarga instalador de docker
@@ -12,8 +12,6 @@ VPS
         sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose      Instala docker-compose. Obtenido desde https://docs.docker.com/compose/install/  (opción linux)
         sudo chmod +x /usr/local/bin/docker-compose         Otorga permiso de ejecución al binario
 
-        dockerd-rootless-setuptool.sh install   Puede ser necesario para correr docker como un usuario no privilegiado
-    
         sudo git clone https://github.com/ingeniot/IoT2021_services.git sudo git clone ruta repositorio.git     (obtenida desde github)  Subir repositorio services desde github al VPS
         mv IoT2021_services ingeniot            			Cambia nombre de la carpeta por uno mas simple
         cd ingeniot                             			Acceder a la carpeta creada
@@ -29,6 +27,7 @@ VPS
               
         sudo git clone https://github.com/ingeniot/IoT2021_app.git      En la carpeta del VPS ingeniot hay que clonar la aplicación
         sudo mv IoT2021_app app                                         Renombra la carpeta
+		incluir en el gitignore de services la carpeta app para evitar conflictos
         sudo docker-compose -f docker-compose-node-install.yml up       Instala los module nuxt en el vps
 
         sudo docker-compose -f  docker-compose-pro.yml up -d
