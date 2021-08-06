@@ -298,7 +298,7 @@ sudo sh -c " echo 'EMQX_DASHBOARD_DEFAULT_USER_PASSWORD=${EMQX_DASHBOARD_DEFAULT
 sudo sh -c " echo 'EMQX_MANAGEMENT_DEFAULT_APPLICATION_SECRET=${EMQX_MANAGEMENT_DEFAULT_APPLICATION_SECRET}' >> $filename"
 
 
-sudo git clone https://github.com/iingeniot/IoT2021_app.git
+sudo git clone https://github.com/ingeniot/IoT2021_app.git
 sudo mv IoT2021_app  app
 
 cd app
@@ -350,7 +350,7 @@ cd ..
 
 
 
-sudo docker-compose -f docker_compose_node_install.yml up
-sudo docker-compose -f docker_compose_nuxt_build.yml up
-sudo docker-compose -f docker_compose_pro.yml up -d
+sudo docker-compose -f docker-compose-node-install.yml up
+sudo docker-compose -f docker-compose-nuxt-build.yml up
+sudo docker-compose -f docker-compose-pro.yml up -d
 
