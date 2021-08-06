@@ -29,7 +29,12 @@ rand-str()
 
 clear
 msg="
-               ingeniot                                                
+  _____     _____ _                   ___   __  
+  \_   \___/__   (_) ___ ___  ___    / _ \ / /  
+   / /\/ _ \ / /\/ |/ __/ _ \/ __|  / /_\// /   
+/\/ /_| (_) / /  | | (_| (_) \__ \ / /_\\/ /___ 
+\____/ \___/\/   |_|\___\___/|___/ \____/\____/ 
+                                    ioticoscr                                                
 "
 
 
@@ -84,11 +89,11 @@ done
 
 #port
 printf "\n\n🔌 Selecciona un puerto para Mongo Db\n"
-while [[ -z "$MONGO_EXTERNAL_PORT" ]]
+while [[ -z "$MONGO_PORT" ]]
 do
-  read -p "   Mongo Port $(tput setaf 128)(27017)$(tput setaf 7): "  MONGO_EXTERNAL_PORT
-  MONGO_EXTERNAL_PORT=${MONGO_EXTERNAL_PORT:-27017}
-  echo "      Selected Mongo Port ► ${MONGO_EXTERNAL_PORT} ✅"
+  read -p "   Mongo Port $(tput setaf 128)(27017)$(tput setaf 7): "  MONGO_PORT
+  MONGO_PORT=${MONGO_PORT:-27017}
+  echo "      Selected Mongo Port ► ${MONGO_PORT} ✅"
 done
 
 ## ______________________________
@@ -99,11 +104,11 @@ done
 #Dashboard Password
 random_str=$(rand-str 20)
 printf "\n\n🔐 Necesitamos crear una clave para el Dashboard de EMQX \n"
-while [[ -z "$EMQX_DASHBOARD_DEFAULT_USER_PASSWORD" ]]
+while [[ -z "$EMQX_DEFAULT_USER_PASSWORD" ]]
 do
-  read -p "   EMQX Dashboard Password $(tput setaf 128)(${random_str})$(tput setaf 7): "  EMQX_DASHBOARD_DEFAULT_USER_PASSWORD
-  EMQX_DASHBOARD_DEFAULT_USER_PASSWORD=${EMQX_DASHBOARD_DEFAULT_USER_PASSWORD:-${random_str}}
-  echo "      Selected EMQX Dashboard Password ► ${EMQX_DASHBOARD_DEFAULT_USER_PASSWORD} ✅"
+  read -p "   EMQX Dashboard Password $(tput setaf 128)(${random_str})$(tput setaf 7): "  EMQX_DEFAULT_USER_PASSWORD
+  EMQX_DEFAULT_USER_PASSWORD=${EMQX_DEFAULT_USER_PASSWORD:-${random_str}}
+  echo "      Selected EMQX Dashboard Password ► ${EMQX_DEFAULT_USER_PASSWORD} ✅"
 done
 
 
@@ -111,11 +116,11 @@ done
 #EMQX API Password
 random_str=$(rand-str 20)
 printf "\n\n🔐 Necesitamos crear una clave para la API de EMQX \n"
-while [[ -z "$EMQX_MANAGEMENT_DEFAULT_APPLICATION_SECRET" ]]
+while [[ -z "$EMQX_DEFAULT_APPLICATION_SECRET" ]]
 do
-  read -p "   EMQX API Password $(tput setaf 128)(${random_str})$(tput setaf 7): "  EMQX_MANAGEMENT_DEFAULT_APPLICATION_SECRET
-  EMQX_MANAGEMENT_DEFAULT_APPLICATION_SECRET=${EMQX_MANAGEMENT_DEFAULT_APPLICATION_SECRET:-${random_str}}
-  echo "      Selected EMQX API Password ► ${EMQX_MANAGEMENT_DEFAULT_APPLICATION_SECRET} ✅"
+  read -p "   EMQX API Password $(tput setaf 128)(${random_str})$(tput setaf 7): "  EMQX_DEFAULT_APPLICATION_SECRET
+  EMQX_DEFAULT_APPLICATION_SECRET=${EMQX_DEFAULT_APPLICATION_SECRET:-${random_str}}
+  echo "      Selected EMQX API Password ► ${EMQX_DEFAULT_APPLICATION_SECRET} ✅"
 done
 
 
@@ -125,11 +130,11 @@ random_str=$(rand-str 20)
 printf "\n\n👤 Necesitamos crear un superusuario para MQTT \n"
 printf "   Estas credenciales te permitirán conectarte con privilegios totales al broker mqtt. \n"
 printf "   Podrás publicar o suscribirte a cualquier tópico \n"
-while [[ -z "$EMQX_SUPERUSER_USERNAME" ]]
+while [[ -z "$EMQX_NODE_SUPERUSER_USER" ]]
 do
-  read -p "   MQTT Superuser Name $(tput setaf 128)(${random_str})$(tput setaf 7): "  EMQX__SUPERUSER_USERNAME
-  EMQX_SUPERUSER_USERNAME=${EMQX_SUPERUSER_USERNAME:-${random_str}}
-  echo "      Selected MQTT Superuser Name ► ${EMQX_SUPERUSER_USERNAME} ✅"
+  read -p "   MQTT Superuser Name $(tput setaf 128)(${random_str})$(tput setaf 7): "  EMQX_NODE_SUPERUSER_USER
+  EMQX_NODE_SUPERUSER_USER=${EMQX_NODE_SUPERUSER_USER:-${random_str}}
+  echo "      Selected MQTT Superuser Name ► ${EMQX_NODE_SUPERUSER_USER} ✅"
 done
 
 
@@ -137,11 +142,11 @@ done
 #MQTT SUPERUSER PASSWORD
 random_str=$(rand-str 20)
 printf "\n\n🔐 Necesitamos crear la clave del superusuario MQTT \n"
-while [[ -z "$EMQX_SUPERUSER_PASSWORD" ]]
+while [[ -z "$EMQX_NODE_SUPERUSER_PASSWORD" ]]
 do
-  read -p "   MQTT Superuser Name $(tput setaf 128)(${random_str})$(tput setaf 7): "  EMQX_SUPERUSER_PASSWORD
-  EMQX_SUPERUSER_PASSWORD=${EMQX_SUPERUSER_PASSWORD:-${random_str}}
-  echo "      Selected MQTT Superuser Password ► ${EMQX_SUPERUSER_PASSWORD} ✅"
+  read -p "   MQTT Superuser Name $(tput setaf 128)(${random_str})$(tput setaf 7): "  EMQX_NODE_SUPERUSER_PASSWORD
+  EMQX_NODE_SUPERUSER_PASSWORD=${EMQX_NODE_SUPERUSER_PASSWORD:-${random_str}}
+  echo "      Selected MQTT Superuser Password ► ${EMQX_NODE_SUPERUSER_PASSWORD} ✅"
 done
 
 
@@ -249,10 +254,9 @@ printf "   🟢 TIMEZONE: $(tput setaf 128)${TZ}$(tput setaf 7)\n"
 printf "   🟢 MONGO USER: $(tput setaf 128)${MONGO_USERNAME}$(tput setaf 7)\n"
 printf "   🟢 MONGO PASS: $(tput setaf 128)${MONGO_PASSWORD}$(tput setaf 7)\n"
 printf "   🟢 MONGO PORT: $(tput setaf 128)${MONGO_PORT}$(tput setaf 7)\n"
-printf "   🟢 EMQX_DASHBOARD_DEFAULT_USER_PASSWORD: $(tput setaf 128)${EMQX_DASHBOARD_DEFAULT_USER_PASSWORD}$(tput setaf 7)\n"
-printf "   🟢 EMQX API PASSWORD: $(tput setaf 128)${EMQX_MANAGEMENT_DEFAULT_APPLICATION_SECRET}$(tput setaf 7)\n"
-printf "   🟢 MQTT SUPERUSER: $(tput setaf 128)${EMQX_SUPERUSER_USERNAME}$(tput setaf 7)\n"
-printf "   🟢 MQTT SUPER PASS: $(tput setaf 128)${EMQX_SUPERUSER_PASSWORD}$(tput setaf 7)\n"
+printf "   🟢 EMQX API PASSWORD: $(tput setaf 128)${EMQX_DEFAULT_APPLICATION_SECRET}$(tput setaf 7)\n"
+printf "   🟢 MQTT SUPERUSER: $(tput setaf 128)${EMQX_NODE_SUPERUSER_USER}$(tput setaf 7)\n"
+printf "   🟢 MQTT SUPER PASS: $(tput setaf 128)${EMQX_NODE_SUPERUSER_PASSWORD}$(tput setaf 7)\n"
 printf "   🟢 WEBHOOK WEB TOKEN: $(tput setaf 128)${EMQX_API_TOKEN}$(tput setaf 7)\n"
 printf "   🟢 DOMAIN: $(tput setaf 128)${DOMAIN}$(tput setaf 7)\n"
 printf "   🟢 IP: $(tput setaf 128)${IP}$(tput setaf 7)\n"
@@ -271,11 +275,11 @@ sudo ./install_docker.sh
 sudo rm install_docker.sh
 sudo curl -L "https://github.com/docker/compose/releases/download/1.28.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
-sudo git clone https://github.com/ingeniot/IoT2021_services.git
-sudo mv IoT2021_services ingeniot
+sudo git clone https://github.com/ioticos/ioticos_god_level_services.git
+sudo mv ioticos_god_level_services services
 
 
-cd ingeniot
+cd services
 
 ## ______________________________
 ## INSALL INIT
@@ -291,15 +295,15 @@ sudo sh -c " echo '' >> $filename"
 sudo sh -c " echo '# M O N G O' >> $filename"
 sudo sh -c " echo 'MONGO_USERNAME=${MONGO_USERNAME}' >> $filename"
 sudo sh -c " echo 'MONGO_PASSWORD=${MONGO_PASSWORD}' >> $filename"
-sudo sh -c " echo 'MONGO_EXTERNAL_PORT=${MONGO_EXTERNAL_PORT}' >> $filename"
+sudo sh -c " echo 'MONGO_EXT_PORT=${MONGO_PORT}' >> $filename"
 sudo sh -c " echo '' >> $filename"
 sudo sh -c " echo '# E M Q X' >> $filename"
-sudo sh -c " echo 'EMQX_DASHBOARD_DEFAULT_USER_PASSWORD=${EMQX_DASHBOARD_DEFAULT_USER_PASSWORD}' >> $filename"
-sudo sh -c " echo 'EMQX_MANAGEMENT_DEFAULT_APPLICATION_SECRET=${EMQX_MANAGEMENT_DEFAULT_APPLICATION_SECRET}' >> $filename"
+sudo sh -c " echo 'EMQX_DEFAULT_USER_PASSWORD=${EMQX_DEFAULT_USER_PASSWORD}' >> $filename"
+sudo sh -c " echo 'EMQX_DEFAULT_APPLICATION_SECRET=${EMQX_DEFAULT_APPLICATION_SECRET}' >> $filename"
 
 
-sudo git clone https://github.com/iingeniot/IoT2021_app.git
-sudo mv IoT2021_app  app
+sudo git clone https://github.com/ioticos/ioticos_god_level_app.git
+sudo mv ioticos_god_level_app  app
 
 cd app
 
@@ -325,10 +329,10 @@ sudo sh -c "echo '' >> $filename"
 
 
 # E M Q X
-sudo sh -c " echo 'EMQX_MANAGEMENT_DEFAULT_APPLICATION_SECRET=${EMQX_DEFAULT_APPLICATION_SECRET}' >> $filename"
-sudo sh -c " echo 'EMQX_SUPERUSER_USER=${EMQX_NODE_SUPERUSER_USER}' >> $filename"
-sudo sh -c " echo 'EMQX_SUPERUSER_PASSWORD=${EMQX_NODE_SUPERUSER_PASSWORD}' >> $filename"
-sudo sh -c " echo 'EMQX_HOST=${IP}' >> $filename"
+sudo sh -c " echo 'EMQX_DEFAULT_APPLICATION_SECRET=${EMQX_DEFAULT_APPLICATION_SECRET}' >> $filename"
+sudo sh -c " echo 'EMQX_NODE_SUPERUSER_USER=${EMQX_NODE_SUPERUSER_USER}' >> $filename"
+sudo sh -c " echo 'EMQX_NODE_SUPERUSER_PASSWORD=${EMQX_NODE_SUPERUSER_PASSWORD}' >> $filename"
+sudo sh -c " echo 'EMQX_API_HOST=${IP}' >> $filename"
 sudo sh -c " echo 'EMQX_API_TOKEN=${EMQX_API_TOKEN}' >> $filename"
 sudo sh -c "echo 'EMQX_RESOURCES_DELAY=30000' >> $filename"
 sudo sh -c "echo '' >> $filename"
@@ -350,7 +354,6 @@ cd ..
 
 
 
-sudo docker-compose -f docker_compose_node_install.yml up
-sudo docker-compose -f docker_compose_nuxt_build.yml up
-sudo docker-compose -f docker_compose_pro.yml up -d
-
+sudo docker-compose -f docker_node_install.yml up
+sudo docker-compose -f docker_nuxt_build.yml up
+sudo docker-compose -f docker_compose_production.yml up -d
