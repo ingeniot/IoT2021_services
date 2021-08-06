@@ -50,8 +50,8 @@ services:
         container_name: emqx
         image:  emqx/emqx:4.2.3
        #restart: always
-        expose:
-            - 8085
+        #expose:
+           # - 8085
             
         ports: 
         #:- ${emqxdashport}:18083
@@ -84,6 +84,9 @@ services:
             EMQX_NOMATCH: "deny"       
         #MONGO CONNECTION
             EMQX_AUTH__MONGO__TYPE: single
+            EMQX_AUTH__MONGO__TOPOLOGY__POOL_SIZE: 1
+            EMQX_AUTH__MONGO__TOPOLOGY__MAX_OVERFLOW: 0
+
             EMQX_AUTH__MONGO__SERVER: "mongo:${MONGO_EXTERNAL_PORT}"
             EMQX_AUTH__MONGO__POOL: 8
 
@@ -103,10 +106,10 @@ services:
             EMQX_AUTH__MONGO__AUTH_QUERY__PASSWORD_FIELD: "password"
             EMQX_AUTH__MONGO__AUTH_QUERY__SELECTOR: "username=%u"
 
-            EMQX_LISTENER__TCP__EXTERNAL__MAX__CONNECTIONS: 1000
+            EMQX_LISTENER__TCP__EXTERNAL__MAX_CONNECTIONS: 1000
 
             EMQX_AUTH__MONGO__ACL_QUERY: "on"
             EMQX_AUTH__MONGO__ACL_QUERY__COLLECTION: "emqxauthrules"      
             EMQX_AUTH__MONGO__ACL_QUERY__SELECTOR: "username=%u"
 
-            EMQX_LOADED_PLUGINS: "emqx_recon,emqx_retainer,emqx_managment,emqx_dashboard,emqx_auth_mongo"
+            EMQX_LOADED_PLUGINS: "emqx_recon,emqx_retainer,emqx_management,emqx_dashboard,emqx_auth_mongo"

@@ -1,9 +1,10 @@
 #!/bin/bash
 
-
 ## --------------------------------------------------
-## Gabriela Q.  Pablo S. y Benjamín S. - IoTicos.org
+## INGENIOT Installer
 ## ---------------------------------------------------
+
+
 
 ## --------------------------------------------------
 ## ReymondRojasNúñez - IoTCostaRica -ISCORP2021
@@ -283,7 +284,7 @@ filename='.env'
 
 
 #SERVICES .ENV
-sudo sh -c " echo 'environment=prod' >> $filename"
+sudo sh -c " echo 'environment=pro' >> $filename"
 sudo sh -c " echo '' >> $filename"
 sudo sh -c " echo '# TIMEZONE (all containers).' >> $filename"
 sudo sh -c " echo 'TZ=${TZ}' >> $filename"
@@ -303,7 +304,7 @@ sudo mv IoT2021_app  app
 
 cd app
 
-sudo sh -c "echo 'environment=prod' >> $filename"
+sudo sh -c "echo 'environment=pro' >> $filename"
 sudo sh -c "echo '' >> $filename"
 
 #A P I  - N O D E 
