@@ -128,7 +128,7 @@ printf "   Estas credenciales te permitirán conectarte con privilegios totales 
 printf "   Podrás publicar o suscribirte a cualquier tópico \n"
 while [[ -z "$EMQX_SUPERUSER_USERNAME" ]]
 do
-  read -p "   MQTT Superuser Name $(tput setaf 128)(${random_str})$(tput setaf 7): "  EMQX__SUPERUSER_USERNAME
+  read -p "   MQTT Superuser Name $(tput setaf 128)(${random_str})$(tput setaf 7): "  EMQX_SUPERUSER_USERNAME
   EMQX_SUPERUSER_USERNAME=${EMQX_SUPERUSER_USERNAME:-${random_str}}
   echo "      Selected MQTT Superuser Name ► ${EMQX_SUPERUSER_USERNAME} ✅"
 done
@@ -249,7 +249,7 @@ printf "\n\n\n"
 printf "   🟢 TIMEZONE: $(tput setaf 128)${TZ}$(tput setaf 7)\n"
 printf "   🟢 MONGO USER: $(tput setaf 128)${MONGO_USERNAME}$(tput setaf 7)\n"
 printf "   🟢 MONGO PASS: $(tput setaf 128)${MONGO_PASSWORD}$(tput setaf 7)\n"
-printf "   🟢 MONGO PORT: $(tput setaf 128)${MONGO_PORT}$(tput setaf 7)\n"
+printf "   🟢 MONGO PORT: $(tput setaf 128)${MONGO_EXTERNAL_PORT}$(tput setaf 7)\n"
 printf "   🟢 EMQX_DASHBOARD_DEFAULT_USER_PASSWORD: $(tput setaf 128)${EMQX_DASHBOARD_DEFAULT_USER_PASSWORD}$(tput setaf 7)\n"
 printf "   🟢 EMQX API PASSWORD: $(tput setaf 128)${EMQX_MANAGEMENT_DEFAULT_APPLICATION_SECRET}$(tput setaf 7)\n"
 printf "   🟢 MQTT SUPERUSER: $(tput setaf 128)${EMQX_SUPERUSER_USERNAME}$(tput setaf 7)\n"
@@ -319,16 +319,16 @@ sudo sh -c "echo '# M O N G O' >> $filename"
 sudo sh -c "echo 'MONGO_USERNAME=${MONGO_USERNAME}' >> $filename"
 sudo sh -c "echo 'MONGO_PASSWORD=${MONGO_PASSWORD}' >> $filename"
 sudo sh -c "echo 'MONGO_HOST=mongo' >> $filename"
-sudo sh -c "echo 'MONGO_PORT=${MONGO_PORT}' >> $filename"
-sudo sh -c "echo 'MONGO_DATABASE=ioticos_god_level' >> $filename"
+sudo sh -c "echo 'MONGO_PORT=${MONGO_EXTERNAL_PORT}' >> $filename"
+sudo sh -c "echo 'MONGO_DATABASE=ingeniot' >> $filename"
 sudo sh -c "echo '' >> $filename"
 
 
 
 # E M Q X
-sudo sh -c " echo 'EMQX_MANAGEMENT_DEFAULT_APPLICATION_SECRET=${EMQX_DEFAULT_APPLICATION_SECRET}' >> $filename"
-sudo sh -c " echo 'EMQX_SUPERUSER_USER=${EMQX_NODE_SUPERUSER_USER}' >> $filename"
-sudo sh -c " echo 'EMQX_SUPERUSER_PASSWORD=${EMQX_NODE_SUPERUSER_PASSWORD}' >> $filename"
+sudo sh -c " echo 'EMQX_MANAGEMENT_DEFAULT_APPLICATION_SECRET=${EMQX_MANAGEMENT_DEFAULT_APPLICATION_SECRET}' >> $filename"
+sudo sh -c " echo 'EMQX_SUPERUSER_USERNAME=${EMQX_SUPERUSER_USERNAME}' >> $filename"
+sudo sh -c " echo 'EMQX_SUPERUSER_PASSWORD=${EMQX_SUPERUSER_PASSWORD}' >> $filename"
 sudo sh -c " echo 'EMQX_HOST=${IP}' >> $filename"
 sudo sh -c " echo 'EMQX_API_TOKEN=${EMQX_API_TOKEN}' >> $filename"
 sudo sh -c "echo 'EMQX_RESOURCES_DELAY=30000' >> $filename"
