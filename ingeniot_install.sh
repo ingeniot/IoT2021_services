@@ -310,7 +310,7 @@ sudo sh -c "echo '' >> $filename"
 #A P I  - N O D E 
 sudo sh -c "echo '#A P I  - N O D E ' >> $filename"
 sudo sh -c "echo 'API_PORT=3001' >> $filename"
-sudo sh -c "echo 'WEBHOOKS_HOST=node' >> $filename"
+sudo sh -c "echo 'API_HOST=node' >> $filename"
 sudo sh -c "echo 'MQTT_NOTIFICATION_HOST=${IP}' >> $filename"
 sudo sh -c "echo '' >> $filename"
 
