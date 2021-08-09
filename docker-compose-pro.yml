@@ -67,6 +67,7 @@ services:
             - vol-emqx-log:/opt/emqx/log
         links:
             - mongo
+            - node
     # link especial para conectarse con la api que esta en node fuera del contenedor
         extra_hosts:
             - "localhost:192.168.0.104"

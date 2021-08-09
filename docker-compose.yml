@@ -52,9 +52,9 @@ services:
     links:
       - mongo
 
-  # link especial para conectarse con la api que esta en node fuera del contenedor
+  # link especial para conectarse con la api que esta en node fuera del contenedor desde localhost al ip de la máquina
     extra_hosts:
-      - "localhost:192.168.0.104"
+      - "localhost:192.168.20.105"
 
     environment:
       EMQX_NAME: ingeniot
